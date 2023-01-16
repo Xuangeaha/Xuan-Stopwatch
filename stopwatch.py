@@ -1,39 +1,37 @@
-print("秒表   版权所有：轩哥啊哈OvO")
-print("--------------------------------------------------")
+"""
+轩氏秒表   Copyright (c) 2022-2023 轩哥啊哈OvO
+"""
 
 import time
 
-a = int(input("0-->正计时  1-->倒计时: "))
+select = int(input("0-->正计时  1-->倒计时: "))
 
-if a == 0:
+if select == 0:
     while True:
         input("Enter-->开始计时   Ctrl+C-->停止计时")
-        starttime = time.time()
+        start_time = time.time()
         print('计时开始')
+        tick = 0
+
         try:
             while True:
-                for x in range(1000):
-                    print(str(x) + "'")
-                    time.sleep(1)
+                print(str(tick) + "'")
+                time.sleep(1)
+                tick += 1
+
         except KeyboardInterrupt:
-            print('计时结束')
-            endtime = time.time()
-            print('总时间:', round(endtime - starttime, 2),'secs')
+            end_time = time.time()
+            print("计时结束")
+            print("总时间：", round(end_time - start_time, 2), "'")
             break
 
-elif a == 1:
-
-    tl = int(input("请设置倒计时时间："))
+elif select == 1:
+    tick = int(input("请设置倒计时时间："))
     print("计时开始")
-    starttime = time.time()
-    try:
-        while tl > -1:
-            print(str(tl) + "'")
-            time.sleep(1)
-            tl -= 1
-    except KeyboardInterrupt:
-        print("计时结束")
-        endtime = time.time()
-        print('总时间:',round(endtime - starttime,2),'secs')
-
-Stop = input()
+    while True:
+        print(str(tick) + "'")
+        time.sleep(1)
+        tick -= 1
+        if tick == 0:
+            print("计时结束")
+            break
